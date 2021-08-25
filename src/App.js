@@ -1,25 +1,63 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react'
+import * as BooksApi from './api/BooksApi'
+import Home from './containers/Home'
+import Route from './config/Route'
 import './App.css';
-
+import Search from './containers/Search';
+const bookshelves = [
+  { key: 'currentlyReading', name: 'Currently Reading' },
+  { key: 'wantToRead', name: 'Want to Read' },
+  { key: 'read', name: 'Read' }
+];
 function App() {
+  const [books, setbooks] = useState([])
+  const moveBook = (book, shelf) => {
+    // console.log(book);
+    // console.log(shelf);
+    BooksApi.update(book, shelf).catch(err => {
+      console.log(err);
+    });
+    if (shelf === 'none') {
+      console.log('none');
+    } else {
+      book.shelf = shelf;
+    }
+  };
+
+  useEffect(() => {
+    BooksApi.getAll()
+      .then(res => {
+        setbooks(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }, [moveBook])
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+    <div>
+
+      <Route path="/">
+        <Home
+          shelves={bookshelves}
+          books={books}
+          onMove={moveBook}
+        />
+      </Route>
+      <Route
+        path="/search">
+
+        <Search
+          books={books}
+          onMove={moveBook}
+           />
+      </Route>
+
     </div>
-  );
+  )
 }
 
 export default App;
