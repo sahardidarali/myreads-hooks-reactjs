@@ -1,9 +1,9 @@
 import React from 'react';
-import BookItem from './BookItem';
+import BookItem from './BookItem'
 
 function BookShelf(props) {
-  const { shelf, books, onMove } = props;
-  const booksOnThisShelf = books.filter(book => book.shelf === shelf.key);
+  const { shelf, books, onMove } = props
+  const booksOnThisShelf = books.filter(book => book.shelf === shelf.key)
   return (
     <div className="bookshelf">
       <h2 className="bookshelf-title">{shelf.name}</h2>

@@ -11,22 +11,22 @@ function Search(props) {
 
             BooksApi.search(query).then(books => {
                 if (books.error) {
-                    setsearchBooks([]);
+                    setsearchBooks([])
                 } else {
-                    setsearchBooks(books);
-                    console.log(searchBooks);
+                    setsearchBooks(books)
+                    console.log(searchBooks)
                 }
             });
         } else {
-            setsearchBooks([]);
+            setsearchBooks([])
         }
     };
     const onInputChange = event => {
         setTerm(event.target.value)
-        searchForBooks(term);
+        searchForBooks(term)
     }
     const resetSearch = () => {
-        setsearchBooks([]);
+        setsearchBooks([])
     };
 
     return (
@@ -58,16 +58,16 @@ function Search(props) {
 
 export default Search
 function SearchResults(props) {
-    const { searchBooks, books, onMove } = props;
+    const { searchBooks, books, onMove } = props
     const updatedBooks = searchBooks.map(book => {
         books.map(b => {
             if (b.id === book.id) {
-                book.shelf = b.shelf;
+                book.shelf = b.shelf
             }
-            return b;
+            return b
         });
-        return book;
-    });
+        return book
+    })
     return (
         <div className="search-books-results">
             <ol className="books-grid">

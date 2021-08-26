@@ -11,6 +11,8 @@ const bookshelves = [
 ];
 function App() {
   const [books, setbooks] = useState([])
+  
+  
   const moveBook = (book, shelf) => {
     // console.log(book);
     // console.log(shelf);
@@ -18,11 +20,11 @@ function App() {
       console.log(err);
     });
     if (shelf === 'none') {
-      console.log('none');
+      console.log('none')
     } else {
-      book.shelf = shelf;
+      book.shelf = shelf
     }
-  };
+  } 
 
   useEffect(() => {
     BooksApi.getAll()
@@ -60,4 +62,4 @@ function App() {
   )
 }
 
-export default App;
+export default App

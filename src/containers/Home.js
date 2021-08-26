@@ -3,7 +3,7 @@ import Bookshelf from '../components/BookShelf'
 import Link from '../config/Link'
 
 function Home(props) {
-  const { shelves, books, onMove } = props;
+  const { shelves, books, onMove } = props
 
   return (
     <div className="list-books">

@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 
 
 function Dropdown(props) {
   const { book, shelf,onMove } = props
   const [value, setValue] = useState(shelf)
-  //  console.log(book);
-  //  console.log(shelf);
+  //  console.log(book)
+  //  console.log(shelf)
   useEffect(() => {
     onMove(book, value)
 
