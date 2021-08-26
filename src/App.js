@@ -17,12 +17,12 @@ function App() {
     // console.log(book)
     // console.log(shelf)
     BooksApi.update(book, shelf).catch(err => {
-      console.log(err);
+      console.log(err)
     });
     if (shelf === 'none') {
       setbooks(books.filter(b => b.id !== book.id))
     } else {
-      book.shelf = shelf;
+      book.shelf = shelf
       setbooks([...books,books.filter(b => b.id !== book.id)])
     }
   } 
