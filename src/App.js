@@ -14,15 +14,16 @@ function App() {
   
   
   const moveBook = (book, shelf) => {
-    // console.log(book);
-    // console.log(shelf);
+    // console.log(book)
+    // console.log(shelf)
     BooksApi.update(book, shelf).catch(err => {
       console.log(err);
     });
     if (shelf === 'none') {
-      console.log('none')
+      setbooks(books.filter(b => b.id !== book.id))
     } else {
-      book.shelf = shelf
+      book.shelf = shelf;
+      setbooks([...books,books.filter(b => b.id !== book.id)])
     }
   } 
 
@@ -30,13 +31,14 @@ function App() {
     BooksApi.getAll()
       .then(res => {
         setbooks(res)
+        console.log('get');
       })
       .catch(err => {
         console.log(err)
       })
-  }, [moveBook])
+  },[])
 
-
+ 
 
   return (
 
